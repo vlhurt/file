@@ -174,96 +174,92 @@
         <text variable="locator"/>
       </group>
       <group>
-        <text macro="pages"/>
+        <choose>
+          <if variable="page">
+            <text macro="pages"/>
+          </if>
+        </choose>
       </group>
     </group>
   </layout>
 </citation>
-  <bibliography et-al-min="8" et-al-use-first="1" hanging-indent="false">
-    <sort>
-      <key macro="author"/>
-      <key macro="year-date"/>
-      <key variable="title"/>
-    </sort>
-    <layout>
-      <group delimiter=". ">
-        <text macro="author"/>
-        <text macro="year-date"/>
-        <choose>
-          <if type="bill book graphic legal_case legislation motion_picture report song entry-encyclopedia entry-dictionary" match="any">
-            <group delimiter=". " suffix=".">
-              <text macro="title"/>
-              <text macro="edition"/>
+<bibliography et-al-min="8" et-al-use-first="1" hanging-indent="false">
+  <sort>
+    <key macro="author"/>
+    <key macro="year-date"/>
+    <key variable="title"/>
+  </sort>
+  <layout>
+    <group delimiter=". ">
+      <text macro="author"/>
+      <text macro="year-date"/>
+      <choose>
+        <if type="bill book graphic legal_case legislation motion_picture report song entry-encyclopedia entry-dictionary" match="any">
+          <group delimiter=". " suffix=".">
+            <text macro="title"/>
+            <text macro="edition"/>
+            <text macro="editor"/>
+            <text macro="publisher"/>
+            <text macro="bill-detail"/>
+            <text macro="pages"/>
+          </group>
+        </if>
+        <else-if type="chapter paper-conference" match="any">
+          <group delimiter=". " suffix=".">
+            <text macro="title"/>
+            <group prefix=" " delimiter=" ">
+              <text term="in" text-case="capitalize-first" suffix=":"/>
               <text macro="editor"/>
-              <text macro="publisher"/>
-              <text macro="bill-detail"/>
-              <text macro="pages"/>
+              <text variable="container-title" font-style="italic" suffix="."/>
+              <text variable="collection-title" suffix="."/>
             </group>
-          </if>
-          <else-if type="chapter paper-conference" match="any">
-            <group delimiter=". " suffix=".">
-              <text macro="title"/>
-              <group prefix=" " delimiter=" ">
-                <text term="in" text-case="capitalize-first" suffix=":"/>
-                <text macro="editor"/>
-                <text variable="container-title" font-style="italic" suffix="."/>
-                <text variable="collection-title" suffix="."/>
-              </group>
-              <group prefix=" " delimiter=" ">
-                <text macro="edition"/>
-                <group suffix="" delimiter=", ">
-                  <date form="text" variable="event-date"/>
-                  <text macro="publisher"/>
-                  <text macro="pages"/>
-                </group>
-              </group>
-            </group>
-          </else-if>
-          <else-if type="thesis">
-            <group delimiter=". " suffix=".">
-              <text macro="title"/>
+            <group prefix=" " delimiter=" ">
               <text macro="edition"/>
-              <group prefix=" " delimiter=", ">
-                <text variable="genre"/>
+              <group suffix="" delimiter=", ">
+                <date form="text" variable="event-date"/>
                 <text macro="publisher"/>
+                <choose>
+                  <if variable="page">
+                    <text macro="pages"/>
+                  </if>
+                </choose>
               </group>
             </group>
-          </else-if>
-          <else-if type="webpage post post-weblog" match="any">
-            <group delimiter=". " suffix=".">
+          </group>
+        </else-if>
+        <else-if type="webpage post post-weblog" match="any">
+          <group delimiter=". " suffix=".">
+            <text macro="title"/>
+          </group>
+        </else-if>
+        <else>
+          <group delimiter=". " suffix=".">
+            <group>
               <text macro="title"/>
+              <text macro="editor" prefix=" "/>
             </group>
-          </else-if>
-          <else-if type="patent" match="any">
-            <group delimiter=" " suffix=".">
-              <text macro="title"/>
-              <text macro="patent"/>
-            </group>
-          </else-if>
-          <else>
-            <group delimiter=". " suffix=".">
-              <group>
-                <text macro="title"/>
-                <text macro="editor" prefix=" "/>
-              </group>
-              <group delimiter=", ">
-                <group delimiter=" ">
-                  <text variable="container-title" font-style="italic"/>
-                  <group>
-                    <text variable="volume"/>
-                    <text variable="issue" prefix="(" suffix=")"/>
-                  </group>
+            <group delimiter=", ">
+              <group delimiter=" ">
+                <text variable="container-title" font-style="italic"/>
+                <group>
+                  <text variable="volume"/>
+                  <text variable="issue" prefix="(" suffix=")"/>
                 </group>
-                <text macro="pages"/>
               </group>
+              <choose>
+                <if variable="page">
+                  <text macro="pages"/>
+                </if>
+              </choose>
             </group>
-          </else>
-        </choose>
-      </group>
-      <group suffix=".">
-        <text macro="published-date"/>
-        <text prefix=". " macro="access" suffix="."/>
-      </group>
-    </layout>
-  </bibliography>
+          </group>
+        </else>
+      </choose>
+    </group>
+    <group suffix=".">
+      <text macro="published-date"/>
+      <text prefix=". " macro="access" suffix="."/>
+    </group>
+  </layout>
+</bibliography>
 </style>

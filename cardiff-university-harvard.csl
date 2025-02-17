@@ -158,24 +158,27 @@
   <macro name="patent">
     <text variable="number" suffix=" [Patent]."/>
   </macro>
-  <citation et-al-min="3" et-al-use-first="1" disambiguate-add-year-suffix="true">
-    <sort>
-      <key macro="year-date"/>
-      <key variable="author"/>
-    </sort>
-    <layout prefix="(" suffix=")" delimiter="; ">
-      <group delimiter=", ">
-        <group delimiter=" ">
-          <text macro="author-short"/>
-          <text macro="year-date"/>
-        </group>
-        <group>
-          <label variable="locator" form="short"/>
-          <text variable="locator"/>
-        </group>
+ <citation et-al-min="3" et-al-use-first="1" disambiguate-add-year-suffix="true">
+  <sort>
+    <key macro="year-date"/>
+    <key variable="author"/>
+  </sort>
+  <layout prefix="(" suffix=")" delimiter="; ">
+    <group delimiter=", ">
+      <group delimiter=" ">
+        <text macro="author-short"/>
+        <text macro="year-date"/>
       </group>
-    </layout>
-  </citation>
+      <group>
+        <label variable="locator" form="short"/>
+        <text variable="locator"/>
+      </group>
+      <group>
+        <text macro="pages"/>
+      </group>
+    </group>
+  </layout>
+</citation>
   <bibliography et-al-min="8" et-al-use-first="1" hanging-indent="false">
     <sort>
       <key macro="author"/>
